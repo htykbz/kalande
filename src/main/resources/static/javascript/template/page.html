@@ -1,0 +1,15 @@
+<div>
+    <ul class="pagination">
+        <li ng-class="currPage==1?'disabled':'hand'"><a ng-click="getData(1)">首页</a></li>
+        <li ng-class="currPage==1?'disabled':'hand'"><a ng-click="getData(currPage - 1)">&lt;</a></li>
+        <li ng-repeat="item in pageArr" ng-class="item==currPage?'active':''">
+            <a class="hand" ng-click="getData(item)">{{item}}</a>
+        </li>
+        <li ng-class="currPage==maxPage?'disabled':'hand'"><a ng-click="getData(currPage + 1)">&gt;</a></li>
+        <li ng-class="currPage==maxPage?'disabled':'hand'"><a ng-click="getData(maxPage)">尾页</a></li>
+    </ul>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <ul class="pagination">
+        <li class="disabled"><a>共&nbsp;{{maxCount}}&nbsp;条</a></li>
+    </ul>
+</div>

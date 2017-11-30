@@ -1,0 +1,35 @@
+<div class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand"><span class="glyphicon glyphicon-globe"></span></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a class="dropdown-toggle"><b>深圳市公共交通服务指数后台管理系统</b></a></li>
+                <li ng-class="nav=='publish'?'active':''"><a href="../supervise/publish.html" class="dropdown-toggle">发布数据填报</a></li>
+                <li ng-class="nav=='statistics'?'active':''"><a href="/templates/page/supervise/statistics.html" class="dropdown-toggle">各级指标得分</a></li>
+                <li ng-class="nav=='score'?'active':''">
+                    <a class="dropdown-toggle hand" data-toggle="dropdown">公交细项得分</span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="../supervise/score_area.html">公交细项行政区</a></li>
+                        <li class="divider"></li>
+                        <li><a href="../supervise/score_parent_company.html">公交细项总公司</a></li>
+                        <li class="divider"></li>
+                        <li><a href="../supervise/score_company.html">公交细项分公司</a></li>
+                        <li class="divider"></li>
+                        <li><a href="./supervise/score_line.html">公交细项线路</a></li>
+                    </ul>
+                </li>
+                <li ng-class="nav=='surveys'?'active':''"><a href="../supervise/surveys.html" class="dropdown-toggle">服务指数常态调查</a></li>
+                <li class=""><a href="/" class="dropdown-toggle">返回前台2</a></li>
+            </ul>
+
+            <div class="navbar-form navbar-right">
+                <span class="form-group font-write">欢迎 {{userName}} 用户</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-default" ng-click="closeUserFn()">注销</a>
+            </div>
+        </div>
+    </div>
+</div>

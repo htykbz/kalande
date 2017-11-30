@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="head">
+    <section class="sidebar" th:fragment="menu">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-th"></i> <span>官网管理</span>
+                    <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="./menu"><i class="fa fa-circle-o"></i>菜单列表</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-files-o"></i><span>品牌管理</span>
+                    <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="./singlePages"><i class="fa fa-circle-o"></i>品牌历程</a></li>
+                    <li><a href="./singlePages0"><i class="fa fa-circle-o"></i>品牌理念</a></li>
+                  <!--  <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>品牌荣誉</a></li>-->
+                    <li><a href="./news"><i class="fa fa-circle-o"></i>品牌动态</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>产品管理</span>
+                    <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="./productCategories"><i class="fa fa-circle-o"></i>产品分类管理</a></li>
+                    <li><a href="./product"><i class="fa fa-circle-o"></i>产品管理</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-laptop"></i>
+                    <span>鉴定技巧</span>
+                    <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="./trainVideos"><i class="fa fa-circle-o"></i>鉴定视频培训</a></li>
+                    <li><a href="./Trainings"><i class="fa fa-circle-o"></i>鉴定图文培训</a></li>
+<!--                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>各类古玩知识</a></li>
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>优秀书籍推荐</a></li>-->
+                </ul>
+            </li>
+           <!-- <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-laptop"></i>
+                    <span>鉴定案例</span>
+                    <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i>收藏爱好者</a></li>
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>行业内专家</a></li>
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>古玩店老板</a></li>
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>珠宝鉴定师</a></li>
+                </ul>
+            </li>-->
+            <li>
+                <a href="./singlePages2"><i class="fa fa-edit"></i> <span>加盟合作</span></a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-laptop"></i>
+                    <span>系统管理</span>
+                    <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="./usersToEditPs?id=1"><i class="fa fa-circle-o"></i>密码修改</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</div>
+</html>

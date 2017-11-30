@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.kalande.mapper.SinglePagesMapper">
+    <resultMap id="BaseResultMap" type="com.business.kalande.entity.SinglePages">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="title" property="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="summary" property="summary" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="imageUrl" property="imageUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="content" property="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="singleType" property="singleType" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="source" property="source" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="author" property="author" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="isDeleted" property="isDeleted" javaType="java.lang.Boolean" jdbcType="BIT" />
+        <result column="createTime" property="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,title, summary,imageUrl,content,singleType,source,author,isDeleted,createTime
+    </sql>
+    <!--分页查询-->
+    <select id="listByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from SinglePages WHERE IsDeleted=0 AND singleType = #{singleType,jdbcType=INTEGER}
+    </select>
+    <!--查询-->
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        SELECT * from SinglePages
+        where Id = #{id,jdbcType=INTEGER} and IsDeleted=0
+    </select>
+    <!--新增-->
+    <insert id="add" parameterType="com.business.kalande.entity.Products" >
+        insert into SinglePages (title, summary, imageUrl,content,source,
+        author,singleType,createTime)
+        values (#{title,jdbcType=INTEGER}, #{summary,jdbcType=NVARCHAR},#{imageUrl,jdbcType=NVARCHAR} ,
+        #{content,jdbcType=NVARCHAR}, #{source,jdbcType=NVARCHAR}, #{author,jdbcType=NVARCHAR},#{singleType,jdbcType=INTEGER},GETDATE())
+    </insert>
+    <!--品牌文化编辑-->
+    <update id="update" parameterType="com.business.kalande.entity.SinglePages" >
+        update SinglePages
+        set
+        title = #{title,jdbcType=NVARCHAR},
+        summary = #{summary,jdbcType=NVARCHAR},
+        imageUrl = #{imageUrl,jdbcType=NVARCHAR},
+        content = #{content,jdbcType=NVARCHAR},
+        source = #{source,jdbcType=NVARCHAR},
+        author = #{author,jdbcType=NVARCHAR},
+        singleType = #{singleType,jdbcType=INTEGER}
+        where Id = #{id,jdbcType=INTEGER}
+        and  isDeleted= 0
+    </update>
+
+    <update id="delete" parameterType="java.lang.Integer" >
+        update SinglePages
+        set
+        isDeleted = 1
+        where Id = #{id,jdbcType=INTEGER}
+        and  isDeleted= 0
+    </update>
+</mapper>

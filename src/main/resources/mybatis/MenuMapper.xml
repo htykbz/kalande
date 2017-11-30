@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.kalande.mapper.MenuMapper">
+    <resultMap id="BaseResultMap" type="com.business.kalande.entity.Menu">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="pid" property="pid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="title" property="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="url" property="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="summary" property="summary" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="orderBy" property="orderBy" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="isDeleted" property="isDeleted" javaType="java.lang.Boolean" jdbcType="BIT" />
+        <result column="createTime" property="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,pid, title, url,summary,orderBy,isDeleted,createTime
+    </sql>
+    <!--分页查询-->
+    <select id="listBy" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from Menu WHERE IsDeleted=0 order BY  orderBy
+    </select>
+    <!--查询-->
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        SELECT * from Menu
+        where Id = #{id,jdbcType=INTEGER} and IsDeleted=0
+    </select>
+    <!--新增-->
+    <insert id="add" parameterType="com.business.kalande.entity.Menu" >
+        insert into Menu (pid, title, url,summary,orderBy)
+        values (#{pid,jdbcType=INTEGER}, #{title,jdbcType=NVARCHAR},#{url,jdbcType=NVARCHAR} ,
+        #{summary,jdbcType=NVARCHAR}, #{orderBy,jdbcType=INTEGER}
+        )
+    </insert>
+    <!--编辑-->
+    <update id="update" parameterType="com.business.kalande.entity.Products" >
+        update Menu
+        set
+        pid = #{pid,jdbcType=INTEGER},
+        title = #{title,jdbcType=NVARCHAR},
+        summary = #{summary,jdbcType=NVARCHAR},
+        url = #{url,jdbcType=NVARCHAR},
+        orderBy = #{orderBy,jdbcType=INTEGER}
+        where Id = #{id,jdbcType=INTEGER}
+        and  isDeleted= 0
+    </update>
+
+    <!--删除-->
+    <update id="delete" parameterType="java.lang.Integer" >
+        update Menu
+        set
+        isDeleted = 1
+        where Id = #{id,jdbcType=INTEGER}
+        and  isDeleted= 0
+    </update>
+</mapper>

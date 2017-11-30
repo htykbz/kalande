@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.kalande.mapper.TrainVideoCategoriesMapper">
+    <resultMap id="BaseResultMap" type="com.business.kalande.entity.TrainVideoCategories">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="name" property="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,name
+    </sql>
+    <!--查询-->
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        SELECT * from TrainVideoCategories
+        where Id = #{id,jdbcType=INTEGER}
+    </select>
+</mapper>

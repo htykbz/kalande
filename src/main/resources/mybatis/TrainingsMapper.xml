@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.kalande.mapper.TrainingsMapper">
+    <resultMap id="BaseResultMap" type="com.business.kalande.entity.Trainings">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="categoryId" property="categoryId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="title" property="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="summary" property="summary" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="imageUrl" property="imageUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="vedioUrl" property="vedioUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="content" property="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="source" property="source" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="author" property="author" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="price" property="price" javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result column="viewNum" property="viewNum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="isDeleted" property="isDeleted" javaType="java.lang.Boolean" jdbcType="BIT" />
+        <result column="createTime" property="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,categoryId, title, summary,imageUrl,vedioUrl,content,source,author,price,viewNum,isDeleted,createTime
+    </sql>
+    <!--分页查询-->
+    <select id="listByPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from Trainings WHERE IsDeleted=0
+    </select>
+    <!--查询-->
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        SELECT * from Trainings
+        where Id = #{id,jdbcType=INTEGER} and IsDeleted=0
+    </select>
+    <!--产品新增-->
+    <insert id="add" parameterType="com.business.kalande.entity.Trainings" >
+        insert into Trainings (categoryId, title, summary,imageUrl,vedioUrl,
+        content,source,author,price,viewNum
+        )
+        values (#{categoryId,jdbcType=INTEGER}, #{title,jdbcType=NVARCHAR},#{summary,jdbcType=NVARCHAR} ,
+        #{imageUrl,jdbcType=NVARCHAR}, #{vedioUrl,jdbcType=NVARCHAR},#{content,jdbcType=NVARCHAR},#{source,jdbcType=INTEGER},
+        #{author,jdbcType=NVARCHAR}, #{price,jdbcType=DOUBLE}, #{viewNum,jdbcType=INTEGER}
+        )
+    </insert>
+    <!--产品编辑-->
+    <update id="update" parameterType="com.business.kalande.entity.Trainings" >
+        update Trainings
+        set
+        categoryId = #{categoryId,jdbcType=INTEGER},
+        title = #{title,jdbcType=NVARCHAR},
+        summary = #{summary,jdbcType=NVARCHAR},
+        imageUrl = #{imageUrl,jdbcType=NVARCHAR},
+        vedioUrl = #{vedioUrl,jdbcType=NVARCHAR},
+        content = #{content,jdbcType=NVARCHAR},
+        source = #{source,jdbcType=NVARCHAR},
+        author = #{author,jdbcType=NVARCHAR},
+        price = #{price,jdbcType=DOUBLE},
+        viewNum = #{viewNum,jdbcType=INTEGER}
+        where Id = #{id,jdbcType=INTEGER}
+        and  isDeleted= 0
+    </update>
+
+    <!--产品删除-->
+    <update id="delete" parameterType="java.lang.Integer" >
+        update Trainings
+        set
+        isDeleted = 1
+        where Id = #{id,jdbcType=INTEGER}
+        and  isDeleted= 0
+    </update>
+
+    <resultMap id="resultOfCateGoriesVO" type="com.business.kalande.entity.ProductCategoriesVo">
+        <result column="id" property="id" jdbcType="VARCHAR" />
+        <result column="text" property="text" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!--查询产品分类-->
+    <select id="getTrainGoriesById" resultMap="resultOfCateGoriesVO" parameterType="java.lang.Integer">
+        select id,name from TrainCategories WHERE Id = #{id,jdbcType=INTEGER} and IsDeleted=0 ORDER BY orderBy asc
+    </select>
+
+    <select id="getTrainCateGories" resultMap="resultOfCateGoriesVO" >
+        select id,name from TrainCategories WHERE IsDeleted=0 ORDER BY orderBy asc
+    </select>
+</mapper>
